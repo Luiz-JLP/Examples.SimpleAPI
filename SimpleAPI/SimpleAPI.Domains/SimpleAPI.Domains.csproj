@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleAPI.Infrastructure\SimpleAPI.Infrastructure.csproj" />
+    <ProjectReference Include="..\SimpleAPI.Models\SimpleAPI.Models.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -13,9 +13,9 @@ namespace SimpleAPI.Models
         public string Title { get; set; } = string.Empty;
 
         /// <summary>
-        /// Description
+        /// Edition
         /// </summary>
-        public string Description { get; set; } = string.Empty;
+        public int Edition { get; set; };
 
         /// <summary>
         /// Author
