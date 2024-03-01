@@ -15,7 +15,7 @@ namespace SimpleAPI.Models
         /// <summary>
         /// Edition
         /// </summary>
-        public int Edition { get; set; };
+        public int Edition { get; set; }
 
         /// <summary>
         /// Author

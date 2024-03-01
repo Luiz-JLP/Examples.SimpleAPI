@@ -17,27 +17,13 @@ namespace SimpleAPI.Domains
         }
 
         /// <summary>
-        /// Initialize a database
-        /// </summary>
-        /// <param name="books"></param>
-        /// <exception cref="NotImplementedException"></exception>
-        public void InitializeDatabase(IEnumerable<Book> books)
-        {
-            var list = CreateBooks();
-            _bookData.Create(list);
-        }
-
-        /// <summary>
         /// Get a Book by ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Book? Get(Guid id)
+        public Book Get(Guid id)
         {
-            var book = _bookData.Get(id);
-
-            if (book == null) { throw new ArgumentOutOfRangeException("id", "Nenhum item encontrado para o ID passado"); }
-            return book;
+            return _bookData.Get(id) ?? throw new ArgumentException("Nenhum item encontrado.", nameof(id));
         }
 
         /// <summary>
@@ -46,7 +32,27 @@ namespace SimpleAPI.Domains
         /// <returns></returns>
         public IEnumerable<Book> Get()
         {
-            return _bookData.Get();
+            var books = _bookData.Get();
+
+            // It enters the data in the first request.
+            if (books == null || !books.Any())
+            {
+                InitializeDatabase();
+                return _bookData.Get();
+            }
+
+            return books;
+        }
+
+
+
+        /// <summary>
+        /// Initialize a database
+        /// </summary>
+        private void InitializeDatabase()
+        {
+            var list = CreateBooks();
+            _bookData.Create(list);
         }
 
         /// <summary>

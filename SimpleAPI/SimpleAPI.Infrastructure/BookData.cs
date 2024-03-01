@@ -42,7 +42,7 @@ namespace SimpleAPI.Infrastructure
         /// <returns></returns>
         public IEnumerable<Book> Get()
         {
-            return [.. _context.Book];
+            return _context.Book.AsEnumerable();
         }
     }
 }

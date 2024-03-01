@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\SimpleAPI.Domains\SimpleAPI.Domains.csproj" />
+    <ProjectReference Include="..\SimpleAPI.Infrastructure\SimpleAPI.Infrastructure.csproj" />
+    <ProjectReference Include="..\SimpleAPI.Models\SimpleAPI.Models.csproj" />
   </ItemGroup>
 
 </Project>

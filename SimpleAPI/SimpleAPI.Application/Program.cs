@@ -1,4 +1,11 @@
 
+using Microsoft.EntityFrameworkCore;
+using SimpleAPI.Domains;
+using SimpleAPI.Domains.Interfaces;
+using SimpleAPI.Infrastructure;
+using SimpleAPI.Infrastructure.Context;
+using SimpleAPI.Infrastructure.Interfaces;
+
 namespace SimpleAPI.Application
 {
     public class Program
@@ -7,7 +14,11 @@ namespace SimpleAPI.Application
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("Books"));
+
             // Add services to the container.
+            builder.Services.AddScoped<IBooks, Books>();
+            builder.Services.AddScoped<IBookData, BookData>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -26,7 +37,6 @@ namespace SimpleAPI.Application
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
